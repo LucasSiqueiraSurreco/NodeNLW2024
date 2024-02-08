@@ -1,14 +1,12 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE "Poll" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-  - You are about to drop the `PoolOption` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "PoolOption" DROP CONSTRAINT "PoolOption_pollId_fkey";
-
--- DropTable
-DROP TABLE "PoolOption";
+    CONSTRAINT "Poll_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "PollOption" (
@@ -23,8 +21,8 @@ CREATE TABLE "PollOption" (
 CREATE TABLE "Vote" (
     "id" SERIAL NOT NULL,
     "sessionId" TEXT NOT NULL,
-    "pollOptionId" TEXT NOT NULL,
     "pollId" TEXT NOT NULL,
+    "pollOptionId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Vote_pkey" PRIMARY KEY ("id")
